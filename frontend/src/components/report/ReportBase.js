@@ -73,10 +73,14 @@ function ReportBase({ reportCode, report }) {
   useEffect(() => {
     const condition = {};
     if (filter.timeFrom) {
-      condition.tu_ngay = moment(filter.timeFrom);
+      condition.tu_ngay = moment(
+        new Date(filter.timeFrom).setHours(0, 0, 0, 0)
+      ).format('YYYY-MM-DD');
     }
     if (filter.timeTo) {
-      condition.den_ngay = moment(filter.timeTo);
+      condition.den_ngay = moment(
+        new Date(filter.timeTo).setHours(0, 0, 0, 0)
+      ).format('YYYY-MM-DD');
     }
 
     if (concern?.api) {

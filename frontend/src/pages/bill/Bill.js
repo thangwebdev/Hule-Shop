@@ -10,6 +10,7 @@ import useApisContext from '~/hooks/hookContext/useApisContext';
 import useLocalStorage from '~/hooks/useLocalStorage';
 import { cloneDeep } from 'lodash';
 import ModalBase from '~/components/modal/ModalBase';
+import moment from 'moment';
 
 const BillContext = createContext();
 
@@ -91,11 +92,12 @@ function Bill() {
   // tao phieu ban hang moi
   const createPbh = async () => {
     try {
+      let date = moment(new Date().setHours(0, 0, 0, 0)).format('YYYY-MM-DD');
       const pbhPost = {
         ma_trang_thai: 1,
         ten_trang_thai: 'Đang có khách',
-        ngay_lap_phieu: new Date().setHours(0, 0, 0, 0),
-        ngay_ct: new Date().setHours(0, 0, 0, 0),
+        ngay_lap_phieu: date,
+        ngay_ct: date,
         details: [],
       };
       const resp = await asyncPostData('pbl', pbhPost);
@@ -135,7 +137,8 @@ function Bill() {
     }
     if (!error) {
       const pbhClone = cloneDeep(pbl);
-      pbhClone.ngay_ct = new Date().setHours(0, 0, 0, 0);
+      let date = moment(new Date().setHours(0, 0, 0, 0)).format('YYYY-MM-DD');
+      pbhClone.ngay_ct = date;
       pbhClone.ma_trang_thai = 2;
       await updatePbh(pbhClone);
       setOpenPayment(false);

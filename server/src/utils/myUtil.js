@@ -1,8 +1,8 @@
-const jwt = require("jsonwebtoken");
-const createError = require("http-errors");
-const multer = require("multer");
-const fs = require("fs");
-const { v4 } = require("uuid");
+const jwt = require('jsonwebtoken');
+const createError = require('http-errors');
+const multer = require('multer');
+const fs = require('fs');
+const { v4 } = require('uuid');
 const moment = require('moment');
 
 const generateAccessToken = (user) => {
@@ -137,14 +137,19 @@ const getDatesInMonth = ({ tu_ngay, den_ngay }) => {
   return days;
 };
 const generateTimeByDate = (ngayInput) => {
-  const date = new Date(ngayInput)
-  const nam = date.getFullYear();
-  const thang = date.getMonth() + 1;
-  const ngay = date.getDate();
-  const quy = getQuyByMonth(thang);
-  const gio = date.getHours();
-  const phut = date.getMinutes();
-  const giay = date.getSeconds();
+  const d = moment(new Date(ngayInput).setHours(0, 0, 0, 0)).format(
+    'YYYY-MM-DD'
+  );
+
+  const date = moment(d);
+  const nam = date.year();
+  const thang = date.month() + 1;
+  const ngay = date.date();
+  const quy = date.quarter();
+  const gio = date.hour();
+  const phut = date.minute();
+  const giay = date.second();
+
   return { nam, quy, thang, ngay, gio, phut, giay };
 };
 
@@ -158,5 +163,5 @@ module.exports = {
   upload,
   deleteFile,
   getMonthsByPeriod,
-  generateTimeByDate
+  generateTimeByDate,
 };

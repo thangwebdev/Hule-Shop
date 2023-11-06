@@ -23,11 +23,17 @@ function ResultSellToday() {
 
     const req1 = asyncReport({
       endpoint: 'pbl',
-      data: { tu_ngay: today, den_ngay: today },
+      data: {
+        tu_ngay: today.format('YYYY-MM-DD'),
+        den_ngay: today.format('YYYY-MM-DD'),
+      },
     });
     const req2 = asyncReport({
       endpoint: 'pbl',
-      data: { tu_ngay: yesterday, den_ngay: yesterday },
+      data: {
+        tu_ngay: yesterday.format('YYYY-MM-DD'),
+        den_ngay: yesterday.format('YYYY-MM-DD'),
+      },
     });
     const reqServering = asyncGetList('pbl', { ma_trang_thai: 1 });
     Promise.all([req1, req2, reqServering]).then(

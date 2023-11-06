@@ -60,7 +60,7 @@ function ListBase({
 
   // row per page change
   const handleRowPerPageChange = (value) => {
-    setPaginationOption({ ...paginationOption, limit: value });
+    setPaginationOption({ ...paginationOption, limit: value, page: 1 });
   };
   // handle row clicked
   const handleRowClicked = (data) => {

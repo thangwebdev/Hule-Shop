@@ -15,7 +15,7 @@ connectToDB();
 initApiRoute(app);
 // relationData()
 // create sample data
-// generateSeed();
+generateSeed();
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

@@ -96,6 +96,7 @@ const phieuNhapKhoSchema = new mongoose.Schema(
 
 // fuctions
 const caculateGiaVon = ({ tonKho = 0, MAC = 0, nhapKho = 0, giaVon = 0 }) => {
+  tonKho = tonKho >= 0 ? tonKho : 0;
   const newMAC = (tonKho * MAC + nhapKho * giaVon) / (tonKho + nhapKho);
   return Math.round(newMAC);
 };
@@ -123,7 +124,10 @@ const saveInfo = async (pnk) => {
     });
     await productModel.updateOne(
       { ma_vt: product.ma_vt },
-      { ton_kho: product.ton_kho + detail.sl_nhap, gia_von: MAC }
+      {
+        ton_kho: (product.ton_kho >= 0 ? product.ton_kho : 0) + detail.sl_nhap,
+        gia_von: MAC,
+      }
     );
   }
 };

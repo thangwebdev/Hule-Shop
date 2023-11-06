@@ -47,6 +47,6 @@ const HeaderContainer = styled(Stack)`
 const HeaderLogo = styled(Box)`
   display: flex;
   align-items: flex-end;
-  gap: 10px;
+  gap: 5px;
   cursor: pointer;
 `;

@@ -4,23 +4,24 @@ const colors = [
   '#40128B',
   '#DF2E38',
   '#900C3F',
-  '#EA1179',
+  // '#EA1179',
+  '#EF9595',
   '#BA704F',
   '#F8CB2E',
 ];
 
 const themes = [
-//   {
-//   id: 0,
-//   colors: {
-//     main: '#1DC071',
-//     second: '#4ACD8D',
-//     third: '',
-//     four: '#A5E6C6',
-//     fif: '#D2F2E3',
-//     opacity: '#D2F2E380',
-//   },
-// },
+  //   {
+  //   id: 0,
+  //   colors: {
+  //     main: '#1DC071',
+  //     second: '#4ACD8D',
+  //     third: '',
+  //     four: '#A5E6C6',
+  //     fif: '#D2F2E3',
+  //     opacity: '#D2F2E380',
+  //   },
+  // },
   ...colors.map((color, index) => ({
     id: index,
     colors: {

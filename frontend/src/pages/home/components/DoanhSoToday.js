@@ -14,10 +14,10 @@ function DoanhSoToday() {
   const getRevenueThisWeek = async () => {
     let tu_ngay = moment(
       new Date(moment().startOf('isoWeeks').toDate()).setHours(0, 0, 0, 0)
-    );
+    ).format('YYYY-MM-DD');
     let den_ngay = moment(
       new Date(moment().endOf('isoWeeks').toDate()).setHours(0, 0, 0, 0)
-    );
+    ).format('YYYY-MM-DD');
 
     const resp = await asyncReport({
       endpoint: 'pbl',
