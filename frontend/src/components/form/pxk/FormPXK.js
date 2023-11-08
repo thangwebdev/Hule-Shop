@@ -26,7 +26,7 @@ export default function FormPXK({
       .object()
       .typeError('Vui lòng chọn trạng thái')
       .required('Vui lòng chọn trạng thái'),
-    ngay_nhap_hang: yup
+    ngay_xuat_hang: yup
       .date()
       .typeError('Vui lòng chọn ngày xuất hàng')
       .required('Vui lòng chọn ngày xuất hàng'),
@@ -53,13 +53,13 @@ export default function FormPXK({
               }
             : null,
           ngay_ct: moment(defaultValues.ngay_ct).format('YYYY-MM-DD'),
-          ngay_nhap_hang: moment(defaultValues.ngay_nhap_hang).format(
+          ngay_xuat_hang: moment(defaultValues.ngay_xuat_hang).format(
             'YYYY-MM-DD'
           ),
         }
       : {
           ngay_ct: moment().format('YYYY-MM-DD'),
-          ngay_nhap_hang: moment().format('YYYY-MM-DD'),
+          ngay_xuat_hang: moment().format('YYYY-MM-DD'),
         },
     resolver: yupResolver(schema),
   });
@@ -68,12 +68,18 @@ export default function FormPXK({
   const tabRef = useRef();
 
   const generateDataPost = (values) => {
-    const { trang_thai, ...data } = values;
+    const { trang_thai, ngay_ct, ngay_xuat_hang, ...data } = values;
     const result = {
       ...data,
       ma_trang_thai: trang_thai?.ma_trang_thai || '',
       ten_trang_thai: trang_thai?.ten_trang_thai || '',
       color: trang_thai.color,
+      ngay_ct: moment(new Date(ngay_ct).setHours(0, 0, 0, 0)).format(
+        'YYYY-MM-DD'
+      ),
+      ngay_xuat_hang: moment(
+        new Date(ngay_xuat_hang).setHours(0, 0, 0, 0)
+      ).format('YYYY-MM-DD'),
       details,
     };
     return result;

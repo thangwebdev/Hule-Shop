@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import FilterTimeFromTo from '../FilterTimeFromTo';
 import FilterSelectApi from '../FilterSelectApi';
-import moment from 'moment';
 
 function FilterPXK({ setCondition }) {
   const [filter, setFilter] = useState({
@@ -28,13 +27,13 @@ function FilterPXK({ setCondition }) {
     if (filter.timeFrom || filter.timeTo) {
       if (filter.timeFrom && filter.timeTo) {
         condition.ngay_ct = {
-          $gte: moment(filter.timeFrom),
-          $lte: moment(filter.timeTo),
+          $gte: filter.timeFrom,
+          $lte: filter.timeTo,
         };
       } else if (filter.timeFrom) {
-        condition.ngay_ct = { $gte: moment(filter.timeFrom) };
+        condition.ngay_ct = { $gte: filter.timeFrom };
       } else if (filter.timeTo) {
-        condition.ngay_ct = { $lte: moment(filter.timeTo) };
+        condition.ngay_ct = { $lte: filter.timeTo };
       }
     }
     if (filter.vatTu) {

@@ -239,7 +239,8 @@ const computeInfo = async (pbl, next) => {
     if (product.ma_dvt !== detail.ma_dvt) {
       const dvtObj = product.ds_dvt.find((dvt) => dvt.ma_dvt === detail.ma_dvt);
       if (dvtObj) {
-        slXuat = dvtObj.sl_quy_doi;
+        const slXuatTemp = slXuat;
+        slXuat = dvtObj.sl_quy_doi * slXuatTemp;
       }
     }
     // xác định giá bán lẻ

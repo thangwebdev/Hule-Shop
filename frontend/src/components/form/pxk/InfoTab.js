@@ -32,9 +32,9 @@ function InfoTab({ register, control, isEdit, errors }) {
           type="date"
           label="Ngày xuất hàng"
           placeholder="Ngày hàng ra kho"
-          name="ngay_nhap_hang"
+          name="ngay_xuat_hang"
           register={register}
-          errorMessage={errors?.ngay_nhap_hang?.message}
+          errorMessage={errors?.ngay_xuat_hang?.message}
         />
       </Grid>
       <Grid item xs={12} md={6}>

@@ -27,15 +27,28 @@ function FilterPBL({ setCondition }) {
       ],
     };
     if (filter.timeFrom || filter.timeTo) {
+      let startDate, endDate;
       if (filter.timeFrom && filter.timeTo) {
+        startDate = moment(
+          new Date(filter.timeFrom).setHours(0, 0, 0, 0)
+        ).format('YYYY-MM-DD');
+        endDate = moment(new Date(filter.timeTo).setHours(0, 0, 0, 0)).format(
+          'YYYY-MM-DD'
+        );
         condition.ngay_ct = {
-          $gte: moment(filter.timeFrom),
-          $lte: moment(filter.timeTo),
+          $gte: startDate,
+          $lte: endDate,
         };
       } else if (filter.timeFrom) {
-        condition.ngay_ct = { $gte: moment(filter.timeFrom) };
+        startDate = moment(
+          new Date(filter.timeFrom).setHours(0, 0, 0, 0)
+        ).format('YYYY-MM-DD');
+        condition.ngay_ct = { $gte: startDate };
       } else if (filter.timeTo) {
-        condition.ngay_ct = { $lte: moment(filter.timeTo) };
+        endDate = moment(new Date(filter.timeTo).setHours(0, 0, 0, 0)).format(
+          'YYYY-MM-DD'
+        );
+        condition.ngay_ct = { $lte: endDate };
       }
     }
     if (filter.vatTu) {

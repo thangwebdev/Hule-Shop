@@ -76,7 +76,7 @@ export default function FormPBL({
   const tabRef = useRef();
 
   const generateDataPost = (values) => {
-    const { kenh_ban, trang_thai, ...data } = values;
+    const { kenh_ban, trang_thai, ngay_ct, ngay_lap_phieu, ...data } = values;
     const result = {
       ...data,
       ma_kenh: kenh_ban?.ma_kenh || '',
@@ -84,6 +84,12 @@ export default function FormPBL({
       ma_trang_thai: trang_thai?.ma_trang_thai,
       ten_trang_thai: trang_thai?.ten_trang_thai,
       color: trang_thai.color,
+      ngay_ct: moment(new Date(ngay_ct).setHours(0, 0, 0, 0)).format(
+        'YYYY-MM-DD'
+      ),
+      ngay_lap_phieu: moment(
+        new Date(ngay_lap_phieu).setHours(0, 0, 0, 0)
+      ).format('YYYY-MM-DD'),
       details: !isEdit
         ? details.map((item) => {
             delete item._id;

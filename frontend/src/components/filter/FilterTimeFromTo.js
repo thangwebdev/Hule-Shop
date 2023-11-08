@@ -127,7 +127,7 @@ function FilterTimeFromTo({
           break;
         case 'thisweek':
           timeFrom = moment().startOf('weeks').format('YYYY-MM-DD');
-          timeTo = moment().format('YYYY-MM-DD');
+          timeTo = moment().endOf('weeks').format('YYYY-MM-DD');
           break;
         case 'lastweek':
           timeFrom = moment()
@@ -163,7 +163,7 @@ function FilterTimeFromTo({
           break;
         case 'thisquarter':
           timeFrom = moment().startOf('quarters').format('YYYY-MM-DD');
-          timeTo = moment().format('YYYY-MM-DD');
+          timeTo = moment().endOf('quarters').format('YYYY-MM-DD');
           break;
         case 'lastquarter':
           timeFrom = moment()
@@ -177,7 +177,7 @@ function FilterTimeFromTo({
           break;
         case 'thisyear':
           timeFrom = moment().startOf('years').format('YYYY-MM-DD');
-          timeTo = moment().format('YYYY-MM-DD');
+          timeTo = moment().endOf('years').format('YYYY-MM-DD');
           break;
         case 'lastyear':
           timeFrom = moment()

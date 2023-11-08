@@ -68,12 +68,18 @@ export default function FormPNK({
   const tabRef = useRef();
 
   const generateDataPost = (values) => {
-    const { trang_thai, ...data } = values;
+    const { trang_thai, ngay_ct, ngay_nhap_hang, ...data } = values;
     const result = {
       ...data,
       ma_trang_thai: trang_thai?.ma_trang_thai || '',
       ten_trang_thai: trang_thai?.ten_trang_thai || '',
       color: trang_thai.color,
+      ngay_ct: moment(new Date(ngay_ct).setHours(0, 0, 0, 0)).format(
+        'YYYY-MM-DD'
+      ),
+      ngay_nhap_hang: moment(
+        new Date(ngay_nhap_hang).setHours(0, 0, 0, 0)
+      ).format('YYYY-MM-DD'),
       details,
     };
     return result;
