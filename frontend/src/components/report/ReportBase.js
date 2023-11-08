@@ -87,7 +87,7 @@ function ReportBase({ reportCode, report }) {
       getReport(condition);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter, report, concern]);
+  }, [report, concern]);
 
   const renderFilter = () => (
     <Box

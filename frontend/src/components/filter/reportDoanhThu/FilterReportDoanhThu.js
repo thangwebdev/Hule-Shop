@@ -18,28 +18,33 @@ const concerns = [
     columns: [
       {
         name: 'Kênh',
+        sortable: true,
         selector: (row) => row.kenh,
         minWidth: '140px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
@@ -101,42 +106,49 @@ const concerns = [
     columns: [
       {
         name: 'Hàng hóa',
+        sortable: true,
         selector: (row) => row.ten_vt,
-        minWidth: '140px',
+        width: '160px',
+        wrap: true,
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Số lượng',
+        sortable: true,
         selector: (row) => row.sl_xuat,
         center: true,
       },
       {
         name: 'Đơn vị tính',
+        sortable: true,
         selector: (row) => row.ten_dvt,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.tien_hang,
         format: (row) => numeralCustom(row.tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.tien_ck,
         format: (row) => numeralCustom(row.tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
-        sortable: true,
       },
     ],
     convertData(data) {
@@ -204,28 +216,33 @@ const timeConcerns = {
     columns: [
       {
         name: 'Thời gian',
+        sortable: true,
         selector: (row) => row.time,
         width: '200px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
@@ -266,28 +283,33 @@ const timeConcerns = {
     columns: [
       {
         name: 'Ngày',
+        sortable: true,
         selector: (row) => row.time,
         width: '120px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
@@ -326,28 +348,33 @@ const timeConcerns = {
     columns: [
       {
         name: 'Ngày',
+        sortable: true,
         selector: (row) => row.time,
         width: '120px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
@@ -406,28 +433,33 @@ const timeConcerns = {
     columns: [
       {
         name: 'Thời gian',
+        sortable: true,
         selector: (row) => row.time,
         width: '120px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
@@ -466,28 +498,33 @@ const timeConcerns = {
     columns: [
       {
         name: 'Thời gian',
+        sortable: true,
         selector: (row) => row.time,
         width: '120px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
@@ -546,28 +583,33 @@ const timeConcerns = {
     columns: [
       {
         name: 'Thời gian',
+        sortable: true,
         selector: (row) => row.time,
         width: '120px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,
@@ -626,28 +668,33 @@ const timeConcerns = {
     columns: [
       {
         name: 'Thời gian',
+        sortable: true,
         selector: (row) => row.time,
         width: '120px',
       },
       {
         name: 'Số đơn',
+        sortable: true,
         selector: (row) => row.so_don,
         center: true,
       },
       {
         name: 'Tiền hàng',
+        sortable: true,
         selector: (row) => row.t_tien_hang,
         format: (row) => numeralCustom(row.t_tien_hang).format(),
         center: true,
       },
       {
         name: 'Tiền chiết khấu',
+        sortable: true,
         selector: (row) => row.t_tien_ck,
         format: (row) => numeralCustom(row.t_tien_ck).format(),
         center: true,
       },
       {
         name: 'Doanh thu',
+        sortable: true,
         selector: (row) => row.doanh_thu,
         format: (row) => numeralCustom(row.doanh_thu).format(),
         right: true,

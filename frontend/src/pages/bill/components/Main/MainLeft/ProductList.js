@@ -76,44 +76,44 @@ function ProductList() {
           width: '100%',
           padding: '5px',
           maxHeight: mdMatches
-            ? 'calc(100vh - 50px - 50px - 42px - 42px - 46px - 20px)'
+            ? 'calc(100vh - 50px - 42px - 42px - 42px - 40px)'
             : 'calc(100vh - 40px - 46px - 42px)',
           overflow: 'auto',
         }}
       >
-        {products?.length > 0 ? (
-          <Grid container spacing="5px" sx={{ alignContent: 'flex-start' }}>
-            {loading && (
-              <>
-                {Array(12).map((_, index) => (
-                  <Grid key={index} item xs={6} sm={4} md={3}>
-                    <Skeleton
-                      width={210}
-                      height={60}
-                      variant="rounded"
-                      animation="wave"
-                    />
-                  </Grid>
-                ))}
-              </>
-            )}
-            {products.map((product) => (
-              <Grid key={product.ma_vt} item xs={4} sm={3} md={3}>
-                <ProductItem data={product} />
-              </Grid>
-            ))}
+        {!!loading ? (
+          <Grid container spacing="5px">
+            {Array(12)
+              .fill(0)
+              .map((_, index) => (
+                <Grid key={index} item xs={6} sm={4} md={3}>
+                  <Skeleton height={100} variant="rounded" animation="wave" />
+                </Grid>
+              ))}
           </Grid>
         ) : (
-          <Typography
-            sx={{
-              textAlign: 'center',
-              padding: '10px',
-              fontSize: '13px',
-              fontStyle: 'italic',
-            }}
-          >
-            Không có sản phẩm
-          </Typography>
+          <>
+            {products?.length > 0 ? (
+              <Grid container spacing="5px" sx={{ alignContent: 'flex-start' }}>
+                {products.map((product) => (
+                  <Grid key={product.ma_vt} item xs={4} sm={3} md={3}>
+                    <ProductItem data={product} />
+                  </Grid>
+                ))}
+              </Grid>
+            ) : (
+              <Typography
+                sx={{
+                  textAlign: 'center',
+                  padding: '10px',
+                  fontSize: '13px',
+                  fontStyle: 'italic',
+                }}
+              >
+                Không có sản phẩm
+              </Typography>
+            )}
+          </>
         )}
       </Box>
       <Stack

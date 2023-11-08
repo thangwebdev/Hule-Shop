@@ -39,6 +39,7 @@ const dsDanhMuc = {
         selector: (row) => row.ten_vt,
         minWidth: '200px',
         sortable: true,
+        wrap: true,
       },
       {
         name: 'Giá vốn',
@@ -52,6 +53,13 @@ const dsDanhMuc = {
         selector: (row) => row.gia_ban_le,
         sortable: true,
         format: (row) => numeralCustom(row.gia_ban_le).format(),
+        center: true,
+      },
+      {
+        name: 'Tồn kho',
+        selector: (row) => row.ton_kho,
+        format: (row) => numeralCustom(row.ton_kho).format(),
+        sortable: true,
         center: true,
       },
       {
@@ -128,6 +136,19 @@ const dsDanhMuc = {
         format: (row) => formatDateDisplay(row.ngay_nhap_hang),
       },
       {
+        name: 'Chi tiết',
+        selector: (row) =>
+          row.details
+            ?.map(
+              (detail) => `${detail.sl_nhap} ${detail.ten_dvt} ${detail.ten_vt}`
+            )
+            .join(', '),
+        sortable: true,
+        minWidth: '150px',
+        wrap: true,
+        grow: 2,
+      },
+      {
         name: 'Tổng tiền nhập',
         selector: (row) => row.tong_tien_nhap,
         sortable: true,
@@ -169,15 +190,38 @@ const dsDanhMuc = {
         sortable: true,
         center: true,
         format: (row) => formatDateDisplay(row.ngay_ct),
-        minWidth: '150px',
+        width: '140px',
       },
       {
         name: 'Ngày xuất hàng',
         selector: (row) => row.ngay_xuat_hang,
         sortable: true,
-        minWidth: '150px',
+        width: '140px',
         center: true,
         format: (row) => formatDateDisplay(row.ngay_xuat_hang),
+      },
+      {
+        name: 'Chi tiết',
+        selector: (row) =>
+          row.details
+            ?.map(
+              (detail) => `${detail.sl_xuat} ${detail.ten_dvt} ${detail.ten_vt}`
+            )
+            .join(', '),
+        sortable: true,
+        minWidth: '150px',
+        wrap: true,
+        grow: 2,
+        style: { padding: '5px' },
+      },
+      {
+        name: 'Diễn giải',
+        selector: (row) => row.dien_giai,
+        sortable: true,
+        left: true,
+        grow: 2,
+        wrap: true,
+        style: { padding: '5px' },
       },
     ],
   },
