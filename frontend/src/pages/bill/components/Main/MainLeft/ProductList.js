@@ -64,9 +64,13 @@ function ProductList() {
   }, [count, filter.limit]);
 
   useEffect(() => {
+    setFilter({ page: 1, limit: 12 });
+  }, [search]);
+
+  useEffect(() => {
     getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, filter]);
+  }, [filter]);
 
   return (
     <Stack sx={{ flexGrow: 1 }} justifyContent="space-between">

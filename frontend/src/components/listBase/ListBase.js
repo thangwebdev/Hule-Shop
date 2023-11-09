@@ -42,6 +42,7 @@ function ListBase({
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [renderTable, setRenderTable] = useState(false);
   const [openForm, setOpenForm] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [defaultValues, setDefaultValues] = useState();
@@ -60,6 +61,7 @@ function ListBase({
 
   // row per page change
   const handleRowPerPageChange = (value) => {
+    setRenderTable(false);
     setPaginationOption({ ...paginationOption, limit: value, page: 1 });
   };
   // handle row clicked
@@ -71,6 +73,7 @@ function ListBase({
   // get products
   const getListData = async () => {
     setLoading(true);
+    setRenderTable(true);
     const funcGetList = isDeleted ? asyncGetListDeleted : asyncGetList;
     const resp = await funcGetList(maDanhMuc, {
       limit: paginationOption.limit,
@@ -123,12 +126,17 @@ function ListBase({
   useEffect(() => {
     getListData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [paginationOption.limit, paginationOption.page, condition, load]);
+  }, [paginationOption.limit, paginationOption.page, load]);
+
   useEffect(() => {
-    setCondition({});
     setPaginationOption({ limit: 20, page: 1, totalRows: 0 });
     setLoad(load + 1);
+    setRenderTable(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [condition]);
+
+  useEffect(() => {
+    setCondition({});
   }, [maDanhMuc]);
 
   return (
@@ -306,30 +314,32 @@ function ListBase({
               </Stack>
             )}
             <Box>
-              <TableBase
-                maDanhMuc={maDanhMuc}
-                uniquekey={uniqueKey}
-                columns={columns || []}
-                data={data}
-                title={title}
-                progressPending={loading}
-                paginationTotalRows={paginationOption.totalRows}
-                paginationPerPage={paginationOption.limit}
-                onChangeRowsPerPage={handleRowPerPageChange}
-                onChangePage={(value) =>
-                  setPaginationOption({ ...paginationOption, page: value })
-                }
-                onSelectedRowsChange={setSelectedRows}
-                onRowClicked={handleRowClicked}
-                loadData={getListData}
-                isDeleted={isDeleted}
-                fixedHeaderScrollHeight={
-                  fixedHeaderScrollHeight ||
-                  `calc(100vh - 50px - 52px - 34px - 34px - 20px - 18px)`
-                }
-                isOpenDm={isOpenDm}
-                ref={btnDeleteRef}
-              />
+              {renderTable && (
+                <TableBase
+                  maDanhMuc={maDanhMuc}
+                  uniquekey={uniqueKey}
+                  columns={columns || []}
+                  data={data}
+                  title={title}
+                  progressPending={loading}
+                  paginationTotalRows={paginationOption.totalRows}
+                  paginationPerPage={paginationOption.limit}
+                  onChangeRowsPerPage={handleRowPerPageChange}
+                  onChangePage={(value) =>
+                    setPaginationOption({ ...paginationOption, page: value })
+                  }
+                  onSelectedRowsChange={setSelectedRows}
+                  onRowClicked={handleRowClicked}
+                  loadData={getListData}
+                  isDeleted={isDeleted}
+                  fixedHeaderScrollHeight={
+                    fixedHeaderScrollHeight ||
+                    `calc(100vh - 50px - 52px - 34px - 34px - 20px - 18px)`
+                  }
+                  isOpenDm={isOpenDm}
+                  ref={btnDeleteRef}
+                />
+              )}
             </Box>
           </Grid>
         </Grid>
