@@ -7,6 +7,8 @@ const productModel = require('./product.model');
 const createHttpError = require('http-errors');
 const trangthaiModel = require('./trangthai.model');
 const chitietbanleModel = require('./chitietbanle.model');
+const loaithuchiModel = require('./loaithuchi.model');
+const soquyModel = require('./soquy.model');
 
 const pblSchema = new mongoose.Schema(
   {
@@ -203,6 +205,18 @@ const saveInfo = async (pbl) => {
       ngay: pbl.ngay,
     });
   }
+  // tạo phiếu thu
+  const loaiPhieu = await loaithuchiModel.findOne({ ma_loai: 1 });
+  await soquyModel.create({
+    ma_loai_thu_chi: loaiPhieu.ma_loai,
+    ten_loai_thu_chi: loaiPhieu.ten_loai,
+    color: loaiPhieu.color,
+    reference: pbl.ma_phieu,
+    ngay_lap_phieu: pbl.ngay_ct,
+    ngay_ct: pbl.ngay_ct,
+    gia_tri: pbl.doanh_thu,
+    dien_giai: 'Phiếu thu được tạo tự động khi bán hàng',
+  });
 };
 const revertInfo = async (pbl) => {
   for (let i = 0; i < pbl.details.length; i++) {
@@ -226,6 +240,8 @@ const revertInfo = async (pbl) => {
       ma_vt: detail.ma_vt,
     });
   }
+  // xoa phieu thu
+  await soquyModel.deleteOne({ reference: pbl.ma_phieu });
 };
 const computeInfo = async (pbl, next) => {
   let tongTienhang = 0,

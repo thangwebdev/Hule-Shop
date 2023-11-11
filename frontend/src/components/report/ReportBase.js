@@ -21,6 +21,7 @@ function ReportBase({ reportCode, report }) {
   const theme = useTheme();
   const { asyncReport } = useApisContext();
 
+  const [load, setLoad] = useState(1);
   const [loading, setLoading] = useState(false);
   const [concern, setConcern] = useState();
   const [data, setData] = useState([]);
@@ -87,7 +88,12 @@ function ReportBase({ reportCode, report }) {
       getReport(condition);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [report, concern]);
+  }, [load, concern, filter]);
+
+  useEffect(() => {
+    setLoad(load + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [report]);
 
   const renderFilter = () => (
     <Box

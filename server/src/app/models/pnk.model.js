@@ -3,7 +3,8 @@ const createError = require('http-errors');
 const { generateUniqueValueUtil } = require('../../utils/myUtil');
 const productModel = require('../models/product.model');
 const giavonModel = require('./giavon.model');
-const pxkModel = require('./pxk.model');
+const loaithuchiModel = require('./loaithuchi.model');
+const soquyModel = require('./soquy.model');
 /*
 - Khi sửa (không được sửa details) cần sửa sổ kho
  */
@@ -122,6 +123,7 @@ const saveInfo = async (pnk) => {
       tu_so: detail.gia_von * detail.sl_nhap,
       mau_so: detail.sl_nhap,
     });
+    // update gia von
     await productModel.updateOne(
       { ma_vt: product.ma_vt },
       {
@@ -129,6 +131,18 @@ const saveInfo = async (pnk) => {
         gia_von: MAC,
       }
     );
+    // tao phieu chi
+    const loaiPhieu = await loaithuchiModel.findOne({ ma_loai: 2 });
+    await soquyModel.create({
+      ma_loai_thu_chi: loaiPhieu.ma_loai,
+      ten_loai_thu_chi: loaiPhieu.ten_loai,
+      color: loaiPhieu.color,
+      reference: pnk.ma_phieu,
+      ngay_lap_phieu: pnk.ngay_ct,
+      ngay_ct: pnk.ngay_ct,
+      gia_tri: pnk.tong_tien_nhap,
+      dien_giai: 'Phiếu chi được tạo tự động khi nhập kho',
+    });
   }
 };
 const revertInfo = async (pnk) => {
@@ -161,6 +175,8 @@ const revertInfo = async (pnk) => {
         ),
       }
     );
+    // xoa phieu chi
+    await soquyModel.deleteOne({ reference: pnk.ma_phieu });
   }
 };
 

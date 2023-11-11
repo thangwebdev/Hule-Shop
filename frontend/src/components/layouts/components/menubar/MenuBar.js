@@ -3,14 +3,19 @@ import { Box, Container } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import styled from 'styled-components';
 import ButtonOption from '~/components/button/ButtonOption';
-import { HiOutlineViewGridAdd, HiOutlineDocumentText } from 'react-icons/hi';
+import {
+  HiOutlineViewGridAdd,
+  HiOutlineDocumentText,
+  HiOutlineCurrencyDollar,
+} from 'react-icons/hi';
 import {
   BsBoxSeam,
   BsGrid3X3,
   BsBoxArrowInDown,
   BsBarChartLine,
+  BsPlusSlashMinus,
 } from 'react-icons/bs';
-import { BiTransferAlt } from 'react-icons/bi';
+import { BiCoinStack, BiListCheck, BiTransferAlt } from 'react-icons/bi';
 import {
   AiOutlineDeploymentUnit,
   AiOutlineLineChart,
@@ -96,6 +101,13 @@ function MenuBar() {
                 active: location.pathname.indexOf('pxk') >= 0,
               },
               {
+                text: 'Kiểm kho',
+                startIcon: <BiListCheck fontSize="14px" />,
+                primary: true,
+                onClick: () => navigate('/list/pkk'),
+                active: location.pathname.indexOf('pkk') >= 0,
+              },
+              {
                 text: 'Phiếu bán lẻ',
                 startIcon: <TbFileInvoice fontSize="14px" />,
                 primary: true,
@@ -105,6 +117,33 @@ function MenuBar() {
             ]}
           >
             Giao dịch
+          </ButtonOption>
+          <ButtonOption
+            style={{ borderRadius: '4px' }}
+            primary
+            startIcon={<HiOutlineCurrencyDollar fontSize="16px" />}
+            menuColor={theme.palette.primary.second}
+            active={['/list/soquy', '/report/soquy'].includes(
+              location.pathname
+            )}
+            popupOptions={[
+              {
+                text: 'Phiếu thu chi',
+                startIcon: <BsPlusSlashMinus fontSize="14px" />,
+                primary: true,
+                onClick: () => navigate('/list/soquy'),
+                active: location.pathname.indexOf('/list/soquy') >= 0,
+              },
+              {
+                text: 'Báo cáo sổ quỹ',
+                startIcon: <BiCoinStack fontSize="14px" />,
+                primary: true,
+                onClick: () => navigate('/report/soquy'),
+                active: location.pathname.indexOf('/report/soquy') >= 0,
+              },
+            ]}
+          >
+            Sổ quỹ
           </ButtonOption>
           <ButtonOption
             style={{ borderRadius: '4px' }}

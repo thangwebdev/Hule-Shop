@@ -1,3 +1,4 @@
+import FilterReportSoQuy from '~/components/filter/report Soquy/FilterReportSoQuy';
 import FilterReportDoanhThu from '~/components/filter/reportDoanhThu/FilterReportDoanhThu';
 import FilterReportLoiNhuan from '~/components/filter/reportLoiNhuan/FilterReportLoiNhuan';
 
@@ -11,6 +12,11 @@ const reports = {
     title: 'Báo cáo lợi nhuận',
     label: 'Lợi nhuận',
     Filter: FilterReportLoiNhuan,
+  },
+  soquy: {
+    title: 'Báo cáo sổ quỹ',
+    label: 'Sổ quỹ',
+    Filter: FilterReportSoQuy,
   },
 };
 export default reports;

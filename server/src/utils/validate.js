@@ -67,6 +67,51 @@ const validateCreateKenhBan = ({ ma_kenh, ten_kenh }) => {
   });
   return modelSchema.validate({ ma_kenh, ten_kenh });
 };
+// phieu nhap kho
+const validateCreatePNK = ({ ngay_ct, ngay_nhap_hang, ma_trang_thai }) => {
+  const modelSchema = joi.object({
+    ngay_ct: joi.date().required(),
+    ngay_nhap_hang: joi.date().required(),
+    ma_trang_thai: joi.number().required(),
+  });
+  return modelSchema.validate({ ngay_ct, ngay_nhap_hang, ma_trang_thai });
+};
+// phieu xuat kho
+const validateCreatePXK = ({ ngay_ct, ngay_xuat_hang, ma_trang_thai }) => {
+  const modelSchema = joi.object({
+    ngay_ct: joi.date().required(),
+    ngay_xuat_hang: joi.date().required(),
+    ma_trang_thai: joi.number().required(),
+  });
+  return modelSchema.validate({ ngay_ct, ngay_xuat_hang, ma_trang_thai });
+};
+// phieu kiem kho
+const validateCreatePKK = ({ ngay_ct, ngay_lap_phieu, ma_trang_thai }) => {
+  const modelSchema = joi.object({
+    ngay_ct: joi.date().required(),
+    ngay_lap_phieu: joi.date().required(),
+    ma_trang_thai: joi.number().required(),
+  });
+  return modelSchema.validate({ ngay_ct, ngay_lap_phieu, ma_trang_thai });
+};
+// phieu ban le
+const validateCreatePBL = ({ ngay_ct, ngay_lap_phieu, ma_trang_thai }) => {
+  const modelSchema = joi.object({
+    ngay_ct: joi.date().required(),
+    ngay_lap_phieu: joi.date().required(),
+    ma_trang_thai: joi.number().required(),
+  });
+  return modelSchema.validate({ ngay_ct, ngay_lap_phieu, ma_trang_thai });
+};
+// phieu ban le
+const validateCreateSoQuy = ({ ngay_ct, ngay_lap_phieu, ma_loai_thu_chi }) => {
+  const modelSchema = joi.object({
+    ngay_ct: joi.date().required(),
+    ngay_lap_phieu: joi.date().required(),
+    ma_loai_thu_chi: joi.number().required(),
+  });
+  return modelSchema.validate({ ngay_ct, ngay_lap_phieu, ma_loai_thu_chi });
+};
 
 module.exports = {
   validateCreatePhanQuyen,
@@ -77,4 +122,9 @@ module.exports = {
   validateCreateNhomVatTu,
   validateCreateDonViTinh,
   validateCreateKenhBan,
+  validateCreatePKK,
+  validateCreatePNK,
+  validateCreatePXK,
+  validateCreatePBL,
+  validateCreateSoQuy,
 };

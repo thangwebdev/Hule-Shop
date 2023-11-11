@@ -19,6 +19,10 @@ import FilterPC from '~/components/filter/phieuChi/FilterPC';
 import { Chip } from '@mui/material';
 import FormPXK from '~/components/form/pxk/FormPXK';
 import FilterPBL from '~/components/filter/pbl/FilterPBL';
+import FormPKK from '~/components/form/pkk/FormPKK';
+import FilterPKK from '~/components/filter/pkk/FilterPKK';
+import FormLoaiThuChi from '~/components/form/loaithuchi/FormLoaiThuChi';
+import FilterLoaiThuChi from '~/components/filter/loaithuchi/FilterLoaiThuChi';
 
 const dsDanhMuc = {
   dmvt: {
@@ -225,6 +229,74 @@ const dsDanhMuc = {
       },
     ],
   },
+  pkk: {
+    title: 'phiếu kiểm kho',
+    uniqueKey: 'ma_phieu',
+    Form: FormPKK,
+    Filter: FilterPKK,
+    columns: [
+      {
+        name: 'Mã phiếu',
+        selector: (row) => row.ma_phieu,
+        sortable: true,
+        width: '120px',
+        left: true,
+        wrap: true,
+      },
+      {
+        name: 'Trạng thái',
+        width: '120px',
+        center: true,
+        selector: (row) => (
+          <Chip
+            size="small"
+            label={row.ten_trang_thai}
+            sx={{ backgroundColor: row.color, color: '#fff' }}
+          />
+        ),
+      },
+      {
+        name: 'Ngày chứng từ',
+        selector: (row) => row.ngay_ct,
+        sortable: true,
+        center: true,
+        format: (row) => formatDateDisplay(row.ngay_ct),
+        width: '140px',
+      },
+      {
+        name: 'Ngày lập phiếu',
+        selector: (row) => row.ngay_lap_phieu,
+        sortable: true,
+        width: '140px',
+        center: true,
+        format: (row) => formatDateDisplay(row.ngay_lap_phieu),
+      },
+      {
+        name: 'Chi tiết',
+        selector: (row) =>
+          row.details
+            ?.map(
+              (detail) =>
+                `${detail.sl_thuc_te} ${detail.ten_dvt} ${detail.ten_vt}`
+            )
+            .join(', '),
+        sortable: true,
+        minWidth: '150px',
+        wrap: true,
+        grow: 2,
+        style: { padding: '5px' },
+      },
+      {
+        name: 'Diễn giải',
+        selector: (row) => row.dien_giai,
+        sortable: true,
+        left: true,
+        grow: 2,
+        wrap: true,
+        style: { padding: '5px' },
+      },
+    ],
+  },
   pbl: {
     title: 'phiếu bán lẻ',
     uniqueKey: 'ma_phieu',
@@ -276,6 +348,65 @@ const dsDanhMuc = {
         sortable: true,
         right: true,
         wrap: true,
+      },
+    ],
+  },
+  soquy: {
+    title: 'phiếu thu chi',
+    uniqueKey: 'ma_phieu',
+    Form: FormLoaiThuChi,
+    Filter: FilterLoaiThuChi,
+    columns: [
+      {
+        name: 'Mã phiếu',
+        selector: (row) => row.ma_phieu,
+        sortable: true,
+        width: '120px',
+        wrap: true,
+      },
+      {
+        name: 'Loại phiếu',
+        selector: (row) => (
+          <Chip
+            size="small"
+            label={row.ten_loai_thu_chi}
+            sx={{ backgroundColor: row.color, color: '#fff' }}
+          />
+        ),
+        sortable: true,
+        width: '130px',
+        center: true,
+      },
+      {
+        name: 'Ngày chứng từ',
+        selector: (row) => row.ngay_ct,
+        format: (row) => formatDateDisplay(row.ngay_ct),
+        sortable: true,
+        width: '140px',
+        center: true,
+      },
+      {
+        name: 'Ngày lập phiếu',
+        selector: (row) => row.ngay_lap_phieu,
+        format: (row) => formatDateDisplay(row.ngay_lap_phieu),
+        sortable: true,
+        width: '140px',
+        center: true,
+      },
+      {
+        name: 'Giá trị',
+        selector: (row) => row.gia_tri,
+        format: (row) => numeralCustom(row.gia_tri).format(),
+        sortable: true,
+        width: '130px',
+        center: true,
+      },
+      {
+        name: 'Diễn giải',
+        selector: (row) => row.dien_giai,
+        sortable: true,
+        wrap: true,
+        style: { padding: '5px' },
       },
     ],
   },
