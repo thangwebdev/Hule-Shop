@@ -13,7 +13,7 @@ const initApiRoute = (app) => {
   app.use('/api/v1/upload', uploadRoute);
   // handle error
   app.get('/check', (req, res) => {
-    return res.status(200).json({ version: '2.2' });
+    return res.status(200).json({ version: '2.3' });
   });
   app.use((req, res, next) => {
     const error = createError.NotFound('Route is not exist');

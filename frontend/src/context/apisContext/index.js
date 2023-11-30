@@ -6,6 +6,7 @@ export const ApisContext = createContext();
 function ApisProvider({ children }) {
   const alertSnackbar = useSnackbarContext();
   const axiosPrivate = useAxiosPrivate();
+  const mode = localStorage.getItem('mode');
 
   // async get list
   const asyncGetList = async (ma_danh_muc, condition = {}, version = 'v1') => {
@@ -53,6 +54,10 @@ function ApisProvider({ children }) {
     version = 'v1'
   ) => {
     try {
+      if (mode === 'viewer') {
+        alertSnackbar('error', 'Bạn đang ở chế độ xem');
+        return {};
+      }
       const resp = await axiosPrivate[method](
         `/${version}/danhmuc/${ma_danh_muc}`,
         data
@@ -70,6 +75,9 @@ function ApisProvider({ children }) {
   // async delete
   const asyncDelete = async (ma_danh_muc, data, version = 'v1') => {
     try {
+      if (mode === 'viewer') {
+        throw new Error('Bạn đang ở chế độ xem');
+      }
       const resp = await axiosPrivate.delete(
         `/${version}/danhmuc/${ma_danh_muc}`,
         { data }

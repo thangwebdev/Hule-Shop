@@ -2,14 +2,19 @@ import { useEffect } from 'react';
 import { axiosPrivate } from '~/utils/httpRequest';
 import useRefreshToken from './useRefreshToken';
 import useToken from './useToken';
+import { useParams } from 'react-router-dom';
 
 const useAxiosPrivate = () => {
+  const params = useParams();
+  const mode = localStorage.getItem('mode') || params.mode;
   const refresh = useRefreshToken();
   const { accessToken } = useToken();
   const requestInterceptor = axiosPrivate.interceptors.request.use(
     function (config) {
       if (!config.headers['Authorization']) {
-        config.headers['Authorization'] = `Bearer ${accessToken}`;
+        config.headers['Authorization'] = `Bearer ${
+          mode === 'viewer' ? mode : accessToken
+        }`;
       }
       return config;
     },

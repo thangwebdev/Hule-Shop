@@ -58,7 +58,7 @@ const privateRoutes = [
   },
   {
     id: 'list',
-    path: '/list/:maDanhMuc',
+    path: '/:mode?/list/:maDanhMuc',
     page: (
       <PrivateRoute>
         <List />
